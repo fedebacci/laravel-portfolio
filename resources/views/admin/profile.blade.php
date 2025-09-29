@@ -1,5 +1,5 @@
 <h1>
-    Admin dashboard
+    Admin profile
 </h1>
 <ul>
     <li>
