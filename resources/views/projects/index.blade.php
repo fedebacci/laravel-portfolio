@@ -24,9 +24,9 @@
                             <th>
                                 Category
                             </th>
-                            <th>
+                            {{-- <th>
                                 Content
-                            </th>
+                            </th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -41,8 +41,16 @@
                                 <td>
                                     {{ $project->category }}
                                 </td>
-                                <td>
+                                {{-- <td>
                                     {{ $project->content }}
+                                </td> --}}
+                                <td>
+                                    <a href="{{ route('projects.show', $project->id) }}" class="btn btn-primary">
+                                        View Post
+                                    </a>
+                                    {{-- <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-warning">
+                                        Edit Post
+                                    </a> --}}
                                 </td>
                             </tr>
                         @endforeach

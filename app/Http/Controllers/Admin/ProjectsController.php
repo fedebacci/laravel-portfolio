@@ -25,7 +25,8 @@ class ProjectsController extends Controller
     {
         //
         // $project = Project::id($id);
-        // return view('projects.show', compact('project'));
+        $project = Project::findOrFail($id);
+        return view('projects.show', compact('project'));
     }
 
     /**
