@@ -21,13 +21,15 @@
 
                     <div class="mt-5">
                         <p>
-                            <a href="{{ route('admin.index') }}" target="_blank" class="text-decoration-none">
+                            {{-- <a href="{{ route('admin.index') }}" target="_blank" class="text-decoration-none"> --}}
+                            <a href="{{ route('admin.index') }}" class="text-decoration-none">
                                 {{ __('Go to Admin Dashboard') }}
                             </a>
                         </p>
                         <p>
-                            <a href="{{ route('admin.profile') }}" target="_blank" class="text-decoration-none">
-                                {{ __('Go to your profile') }}
+                            {{-- <a href="{{ route('admin.profile') }}" target="_blank" class="text-decoration-none"> --}}
+                            <a href="{{ route('admin.profile') }}" class="text-decoration-none">
+                                {{ __('Go to your Admin Profile') }}
                             </a>
                         </p>
                     </div>

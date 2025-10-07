@@ -28,15 +28,15 @@
                 <!-- Authentication Links -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route("admin.index") }}">
-                        {{ __('Dashboard') }}
+                        {{ __('Admin Dashboard') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route("admin.profile") }}">
-                        {{ __('Profile') }}
+                        {{ __('Admin Profile') }}
                     </a>
                 </li>
-                {{-- @guest
+                @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
@@ -52,8 +52,10 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
-                        <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
+                        <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Default Dashboard')}}</a>
+                        <a class="dropdown-item" href="{{ url('admin.dashboard') }}">{{__('Admin Dashboard')}}</a>
+                        <a class="dropdown-item" href="{{ url('profile') }}">{{__('Default Profile')}}</a>
+                        <a class="dropdown-item" href="{{ url('admin.profile') }}">{{__('Admin Profile')}}</a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
@@ -64,7 +66,7 @@
                         </form>
                     </div>
                 </li>
-                @endguest --}}
+                @endguest
             </ul>
         </div>
     </div>

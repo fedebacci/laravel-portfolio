@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,6 +36,7 @@ Route::middleware(['auth', 'verified'])
     );
 
 
+Route::resource('projects', ProjectsController::class)->middleware(['auth', 'verified']);
 
 
 require __DIR__.'/auth.php';
