@@ -36,6 +36,7 @@ Route::middleware(['auth', 'verified'])
     );
 
 
+// Route::resource('projects', ProjectsController::class)->middleware(['auth', 'verified'])->name('GET', 'projects');
 Route::resource('projects', ProjectsController::class)->middleware(['auth', 'verified']);
 
 

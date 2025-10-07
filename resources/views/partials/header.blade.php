@@ -52,10 +52,24 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Default Dashboard')}}</a>
-                        <a class="dropdown-item" href="{{ url('admin.dashboard') }}">{{__('Admin Dashboard')}}</a>
-                        <a class="dropdown-item" href="{{ url('profile') }}">{{__('Default Profile')}}</a>
-                        <a class="dropdown-item" href="{{ url('admin.profile') }}">{{__('Admin Profile')}}</a>
+                        <a class="dropdown-item" href="{{ route('projects.index') }}">
+                            {{ __('Projects') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('dashboard') }}">
+                            {{ __('Default Dashboard') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('admin.index') }}">
+                            {{ __('Admin Dashboard') }}
+                        </a>
+                        {{-- <a class="dropdown-item" href="{{ url('profile') }}">
+                            {{ __('Default Profile') }}
+                        </a> --}}
+                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                            {{ __('Default Profile') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('admin.profile') }}">
+                            {{ __('Admin Profile') }}
+                        </a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
