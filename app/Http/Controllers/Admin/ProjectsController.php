@@ -24,8 +24,8 @@ class ProjectsController extends Controller
     public function show(string $id)
     {
         //
-        // $project = Project::id($id);
-        $project = Project::findOrFail($id);
+        $project = Project::find($id);
+        // $project = Project::findOrFail($id);
         return view('projects.show', compact('project'));
     }
 

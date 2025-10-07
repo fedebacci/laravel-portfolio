@@ -11,6 +11,29 @@
                 <h1>
                     Project #{{ $project->id }}
                 </h1>
+
+                <ul>
+                    <li>
+                        <strong>Titolo:</strong> {{ $project->title }}
+                    </li>
+                    <li>
+                        <strong>Autore:</strong> {{ $project->author }}
+                    </li>
+                    <li>
+                        <strong>Categoria:</strong> {{ $project->category }}
+                    </li>
+                    <li>
+                        <strong>Contenuto:</strong>
+                        <br />
+                        {{ $project->content }}
+                    </li>
+                    <li>
+                        <strong>Creato:</strong> {{ $project->created_at }}
+                    </li>
+                    <li>
+                        <strong>Modificato:</strong> {{ $project->updated_at }}
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
