@@ -1,6 +1,6 @@
 @extends('layouts.projects')
 
-@section('title', 'Create New Admin Project')
+@section('title', 'Edit Admin Project #' . $project->id)
 
 @section('content')
 
