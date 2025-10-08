@@ -19,6 +19,16 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+
+    <style>
+        pre {
+            /* color: red;
+            background-color: #ccc; */
+            
+            font-family: inherit !important;
+            font-size: inherit !important;
+        }
+    </style>
 </head>
 
 <body>

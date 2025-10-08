@@ -40,7 +40,7 @@
                     <li>
                         <strong>Contenuto:</strong>
                         <br />
-                        {{ $project->content }}
+                        <pre>{{ $project->content }}</pre>
                     </li>
                     <li>
                         <strong>Creato:</strong> {{ $project->created_at }}
