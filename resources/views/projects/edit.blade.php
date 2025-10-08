@@ -35,10 +35,24 @@
                     </label>
                     <input value="{{ $project->author }}" type="text" name="author" id="author" class="form-control mb-2" required pattern="\S(.*\S)?">
 
-                    <label for="category">
+                    {{-- # OLD with category string (no relations) -> category (Old resource) --}}
+                    {{-- <label for="category">
                         Categoria del progetto
                     </label>
-                    <input value="{{ $project->category }}" type="text" name="category" id="category" class="form-control mb-2" required pattern="\S(.*\S)?">
+                    <input value="{{ $project->category }}" type="text" name="category" id="category" class="form-control mb-2" required pattern="\S(.*\S)?"> --}}
+                    
+                    {{-- # NEW with type Model (relation One to Many) -> type (New resource) --}}
+                    <label for="type_id">
+                        Categoria del progetto
+                    </label>
+                    <select name="type_id" id="type_id">
+                        @foreach ($types as $type)
+                            {{-- <option value="{{ $type->id }}" @if ($type->id == old('type_id', $project->type_id)) selected @endif>
+                                {{ $type->name }}
+                            </option> --}}
+                            <option value="{{ $type->id }}" {{ $project->type_id == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
+                        @endforeach
+                    </select>
 
                     <label for="content">
                         Descrizione del progetto

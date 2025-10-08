@@ -26,60 +26,63 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route("admin.index") }}">
-                        {{ __('Admin Dashboard') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route("admin.profile") }}">
-                        {{ __('Admin Profile') }}
-                    </a>
-                </li>
                 @guest
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-                @if (Route::has('register'))
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                </li>
-                @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                    @endif
                 @else
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }}
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('projects.index') }}">
-                            {{ __('Projects') }}
-                        </a>
-                        <a class="dropdown-item" href="{{ route('dashboard') }}">
-                            {{ __('Default Dashboard') }}
-                        </a>
-                        <a class="dropdown-item" href="{{ route('admin.index') }}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route("admin.index") }}">
                             {{ __('Admin Dashboard') }}
                         </a>
-                        {{-- <a class="dropdown-item" href="{{ url('profile') }}">
-                            {{ __('Default Profile') }}
-                        </a> --}}
-                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                            {{ __('Default Profile') }}
-                        </a>
-                        <a class="dropdown-item" href="{{ route('admin.profile') }}">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route("admin.profile") }}">
                             {{ __('Admin Profile') }}
                         </a>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{-- - If user is not set you can still retrieve informations with Auth --}}
+                            {{-- - Changed because I set the user as a variable inside DashboardController --}}
+                            {{ Auth::user()->name }}
+                            
+                            {{-- ! Does not work on default dashboard because user is not set in that controller. --}}
+                            {{-- todo: Check which controller is called and set user as done in DashboardController --}}
+                            {{-- {{ $user['name'] }} --}}
                         </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('projects.index') }}">
+                                {{ __('Projects') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                {{ __('Default Dashboard') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('admin.index') }}">
+                                {{ __('Admin Dashboard') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                {{ __('Default Profile') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('admin.profile') }}">
+                                {{ __('Admin Profile') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
                 @endguest
             </ul>
         </div>

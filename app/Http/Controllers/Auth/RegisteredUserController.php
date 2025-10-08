@@ -45,6 +45,10 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        // # Redirect to dashboard (named route) after registration
+        // todo: Check if this is the route alled on registration and set user as done in DashboardController
+        // return redirect()->route('dashboard', compact('user'));
+
         return redirect(route('dashboard', absolute: false));
     }
 }
