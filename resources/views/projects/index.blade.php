@@ -12,6 +12,15 @@
                     Admin Projects
                 </h1>
 
+                <div class="d-flex gap-1 my-3">
+                    <a href="{{ route('projects.create') }}" class="btn btn-success">
+                        Create New Project
+                    </a>
+                    <a href="{{ route('admin.index') }}" class="btn btn-primary">
+                        Back to Admin Dashboard
+                    </a>
+                </div>
+
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -46,10 +55,10 @@
                                 </td> --}}
                                 <td>
                                     <a href="{{ route('projects.show', $project->id) }}" class="btn btn-primary">
-                                        View Post
+                                        View Project
                                     </a>
                                     {{-- <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-warning">
-                                        Edit Post
+                                        Edit Project
                                     </a> --}}
                                 </td>
                             </tr>

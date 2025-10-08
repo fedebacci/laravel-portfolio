@@ -33,6 +33,7 @@ class ProjectsController extends Controller
     public function create()
     {
         //
+        return view('projects.create');
     }
 
     /**
@@ -41,29 +42,60 @@ class ProjectsController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+        $newProject = new Project();
+
+        // - mass assignment
+        // # make sure to set the $fillable property in the Model
+        // $newProject->fill($data);
+
+        // assignment of single attributes
+        $newProject->title = $data['title'];
+        $newProject->author = $data['author'];
+        $newProject->category = $data['category'];
+        $newProject->content = $data['content'];
+        // dd($newProject);
+
+        $newProject->save();
+        return redirect()->route('projects.show', $newProject->id);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
         //
+        // dd($project);
+        return view('projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Project $project)
     {
         //
+        $data = $request->all();
+        // dd($data);
+        $project->title = $data['title'];
+        $project->author = $data['author'];
+        $project->category = $data['category'];
+        $project->content = $data['content'];
+
+        // dd($project);
+
+        $project->update();
+        return redirect()->route('projects.show', $project->id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
         //
+        $project->delete();
+        return redirect()->route('projects.index');
     }
 }
