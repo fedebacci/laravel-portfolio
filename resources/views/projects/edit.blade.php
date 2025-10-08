@@ -18,47 +18,75 @@
                     </a>
                 </div>
 
-                <form action="{{ route('projects.update', $project) }}" method="POST">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-                    {{-- token --}}
-                    @csrf
-                    {{-- method --}}
-                    @method('PUT')
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{{ route('projects.update', $project) }}" method="POST" class="row g-3">
+                            {{-- token --}}
+                            @csrf
+                            {{-- method --}}
+                            @method('PUT')
+                            <div class="col-12">
+                                <label for="title">
+                                    Titolo del progetto
+                                </label>
+                                <input value="{{ $project->title }}" type="text" name="title" id="title" class="form-control mb-2" required pattern="\S(.*\S)?">
+                            </div>
+                            <div class="col-12">
+                                <label for="client">
+                                    Cliente del progetto
+                                </label>
+                                <input value="{{ $project->client }}" type="text" name="client" id="client" class="form-control mb-2" required pattern="\S(.*\S)?">
+                            </div>
+                            {{-- # OLD with category string (no relations) -> category (Old resource) --}}
+                            {{-- <label for="category">
+                                Categoria del progetto
+                            </label>
+                            <input value="{{ $project->category }}" type="text" name="category" id="category" class="form-control mb-2" required pattern="\S(.*\S)?"> --}}
+                        
+                            {{-- # NEW with type Model (relation One to Many) -> type (New resource) --}}
+                            {{-- <label for="type_id">
+                                Categoria del progetto
+                            </label>
+                            <select name="type_id" id="type_id">
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->id }}" {{ $project->type_id == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
+                                @endforeach
+                            </select> --}}
 
-                    <label for="title">
-                        Titolo del progetto
-                    </label>
-                    <input value="{{ $project->title }}" type="text" name="title" id="title" class="form-control mb-2" required pattern="\S(.*\S)?">
+                            <div class="col-6">
+                                <label for="startDate">
+                                    Inizio del progetto
+                                </label>
+                                <input value="{{ substr($project->startDate, 0, 10) }}" type="date" name="startDate" id="startDate" class="form-control mb-2" required max="{{ date('Y-m-d') }}">
+                            </div>
+                            <div class="col-6">
+                                <label for="endDate">
+                                    Fine del progetto
+                                </label>
+                                <input value="{{ substr($project->endDate, 0, 10) }}" type="date" name="endDate" id="endDate" class="form-control mb-2" required max="{{ date('Y-m-d') }}">
+                            </div>
 
-                    <label for="author">
-                        Autore del progetto
-                    </label>
-                    <input value="{{ $project->author }}" type="text" name="author" id="author" class="form-control mb-2" required pattern="\S(.*\S)?">
 
-                    {{-- # OLD with category string (no relations) -> category (Old resource) --}}
-                    <label for="category">
-                        Categoria del progetto
-                    </label>
-                    <input value="{{ $project->category }}" type="text" name="category" id="category" class="form-control mb-2" required pattern="\S(.*\S)?">
-                    
-                    {{-- # NEW with type Model (relation One to Many) -> type (New resource) --}}
-                    {{-- <label for="type_id">
-                        Categoria del progetto
-                    </label>
-                    <select name="type_id" id="type_id">
-                        @foreach ($types as $type)
-                            <option value="{{ $type->id }}" {{ $project->type_id == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
-                        @endforeach
-                    </select> --}}
-
-                    <label for="content">
-                        Descrizione del progetto
-                    </label>
-                    <textarea name="content" id="content" class="form-control mb-2" required pattern="\S(.*\S)?">{{ $project->content }}</textarea>
-
-                    <input type="submit" value="Modifica Progetto" class="btn btn-success">
-
-                </form>
+                            <div class="col-12">
+                                <label for="summary">
+                                    Riassunto del progetto
+                                </label>
+                                <textarea name="summary" id="summary" class="form-control mb-2" required pattern="\S(.*\S)?">{{ $project->summary }}</textarea>
+                            </div>
+                            <div class="col-12"><input type="submit" value="Modifica Progetto" class="btn btn-success"></div>
+                        </form>
+                    </div>
+                </div>
 
             </div>
         </div>

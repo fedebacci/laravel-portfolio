@@ -28,17 +28,17 @@
                                 Title
                             </th>
                             <th>
-                                Author
+                                Client
                             </th>
                             <th>
-                                Category
+                                Period
                             </th>
+                            {{-- <th>
+                                Type
+                            </th> --}}
                             <th>
                                 Actions
                             </th>
-                            {{-- <th>
-                                Content
-                            </th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -48,13 +48,15 @@
                                     #{{ $project->id }} {{ $project->title }}
                                 </td>
                                 <td>
-                                    {{ $project->author }}
+                                    {{ $project->client }}
                                 </td>
                                 <td>
-                                    {{ $project->category }}
+                                    <span class="text-nowrap">From: {{ substr($project->startDate, 0, 10) }}</span>
+                                    <br/>
+                                    <span class="text-nowrap">To: {{ substr($project->endDate, 0, 10) }}</span>
                                 </td>
                                 {{-- <td>
-                                    {{ $project->content }}
+                                    {{ $project->summary }}
                                 </td> --}}
                                 <td>
                                     <div class="d-flex flex-column gap-1">

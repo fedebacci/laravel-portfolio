@@ -36,8 +36,9 @@ Route::middleware(['auth', 'verified'])
     );
 
 
-// Route::resource('projects', ProjectsController::class)->middleware(['auth', 'verified'])->name('GET', 'projects');
-Route::resource('projects', ProjectsController::class)->middleware(['auth', 'verified']);
+// Route::resource('projects', ProjectsController::class)->middleware(['auth', 'verified']);
+// # FOR TESTING (NO LOGIN REQUIRED)
+Route::resource('projects', ProjectsController::class);
 
 
 require __DIR__.'/auth.php';

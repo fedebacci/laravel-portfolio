@@ -32,15 +32,24 @@
                         <strong>Titolo:</strong> {{ $project->title }}
                     </li>
                     <li>
-                        <strong>Autore:</strong> {{ $project->author }}
+                        <strong>Cliente:</strong> {{ $project->client }}
                     </li>
                     <li>
-                        <strong>Categoria:</strong> {{ $project->category }}
+                        <strong>Periodo:</strong>                                     
+                        <br/>
+                        <span class="text-nowrap">From: {{ substr($project->startDate, 0, 10) }}</span>
+                        <br/>
+                        <span class="text-nowrap">To: {{ substr($project->endDate, 0, 10) }}</span>
                     </li>
+                    {{-- <li>
+                        <strong>Tipo:</strong> {{ $project->type->name ?? 'No type' }}
+                    </li> --}}
                     <li>
                         <strong>Contenuto:</strong>
                         <br />
-                        <pre class="m-0">{{ $project->content }}</pre>
+                        {{-- <pre class="m-0 text-wrap">{{ $project->summary }}</pre> --}}
+                        {{-- <pre class="m-0">{{ $project->summary }}</pre> --}}
+                        {{ $project->summary }}
                     </li>
                     <li>
                         <strong>Creato:</strong> {{ $project->created_at }}

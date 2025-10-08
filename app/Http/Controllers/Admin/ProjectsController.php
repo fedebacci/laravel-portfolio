@@ -45,6 +45,12 @@ class ProjectsController extends Controller
         $data = $request->all();
         $newProject = new Project();
 
+        $data['startDate'] = $data['startDate'] . ' 00:00:00';
+        $data['endDate'] = $data['endDate'] . ' 00:00:00';
+
+
+        // dd($data);
+
         // - mass assignment
         // # make sure to set the $fillable property in the Model
         // $newProject->fill($data);
@@ -66,23 +72,48 @@ class ProjectsController extends Controller
         } else {
             $newProject->title = $data['title'];
         }
-        // ! Author check
-        if ($data['author'] == null) {
-            $newProject->author = 'No author';
+        // ! Client check
+        if ($data['client'] == null) {
+            $newProject->client = 'No client';
         } else {
-            $newProject->author = $data['author'];
+            $newProject->client = $data['client'];
         }
-        // ! Category check
-        if ($data['category'] == null) {
-            $newProject->category = 'No category';
-        } else {
-            $newProject->category = $data['category'];
+        // // ! Category check
+        // if ($data['type_id'] == null) {
+        //     $newProject->type_id = 'No type_id';
+        // } else {
+        //     $newProject->type_id = $data['type_id'];
+        // }
+
+        // # IMPORTANTE
+        // - Control that endDate is after startDate
+        if ($data['startDate'] > $data['endDate']) {
+            // ! Redirect back with input and error message
+            return redirect()->back()->withInput()->withErrors(['endDate' => 'End date must be after start date']);
         }
-        // ! Content check
-        if ($data['content'] == null) {
-            $newProject->content = 'No content';
+        // todo: redirect back mantaining the input data as the last data entered, even if it is not saved because of the error
+        // ! https://laravel.com/docs/10.x/validation#redirecting-with-input
+        // https://laravel.com/docs/10.x/validation#repopulating-forms
+
+
+
+        // ! Start date check
+        if ($data['startDate'] == null) {
+            $newProject->startDate = 'No startDate';
         } else {
-            $newProject->content = $data['content'];
+            $newProject->startDate = $data['startDate'];
+        }
+        // ! End date check
+        if ($data['endDate'] == null) {
+            $newProject->endDate = 'No endDate';
+        } else {
+            $newProject->endDate = $data['endDate'];
+        }
+        // ! Summary check
+        if ($data['summary'] == null) {
+            $newProject->summary = 'No summary';
+        } else {
+            $newProject->summary = $data['summary'];
         }
         // dd($newProject);
 
@@ -107,6 +138,10 @@ class ProjectsController extends Controller
     {
         //
         $data = $request->all();
+
+        $data['startDate'] = $data['startDate'] . ' 00:00:00';
+        $data['endDate'] = $data['endDate'] . ' 00:00:00';
+
         // dd($data);
 
         // assignment of single attributes
@@ -118,23 +153,49 @@ class ProjectsController extends Controller
         } else {
             $project->title = $data['title'];
         }
-        // ! Author check
-        if ($data['author'] == null) {
-            $project->author = 'No author';
+        // ! Client check
+        if ($data['client'] == null) {
+            $project->client = 'No client';
         } else {
-            $project->author = $data['author'];
+            $project->client = $data['client'];
         }
-        // ! Category check
-        if ($data['category'] == null) {
-            $project->category = 'No category';
-        } else {
-            $project->category = $data['category'];
+        // // ! Category check
+        // if ($data['category'] == null) {
+        //     $project->category = 'No category';
+        // } else {
+        //     $project->category = $data['category'];
+        // }
+
+        
+
+        // # IMPORTANTE
+        // - Control that endDate is after startDate
+        if ($data['startDate'] > $data['endDate']) {
+            // ! Redirect back with input and error message
+            return redirect()->back()->withInput()->withErrors(['endDate' => 'End date must be after start date']);
         }
-        // ! Content check
-        if ($data['content'] == null) {
-            $project->content = 'No content';
+        // todo: redirect back mantaining the input data as the last data entered, even if it is not saved because of the error
+        // ! https://laravel.com/docs/10.x/validation#redirecting-with-input
+        // https://laravel.com/docs/10.x/validation#repopulating-forms
+
+
+        // ! Start date check
+        if ($data['startDate'] == null) {
+            $project->startDate = 'No startDate';
         } else {
-            $project->content = $data['content'];
+            $project->startDate = $data['startDate'];
+        }
+        // ! End date check
+        if ($data['endDate'] == null) {
+            $project->endDate = 'No endDate';
+        } else {
+            $project->endDate = $data['endDate'];
+        }
+        // ! Summary check
+        if ($data['summary'] == null) {
+            $project->summary = 'No summary';
+        } else {
+            $project->summary = $data['summary'];
         }
 
         // dd($project);

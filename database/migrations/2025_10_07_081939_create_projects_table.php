@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
-            $table->string('author');
-            $table->string('category');
-            $table->longText('content');
+            $table->string('client');
+            // $table->string('period');
+            // $table->date('startDate');
+            // $table->date('endDate');
+            $table->dateTime('startDate');
+            $table->dateTime('endDate');
+            $table->longText('summary');
 
 
             $table->timestamps();
