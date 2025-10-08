@@ -1,15 +1,10 @@
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProjectModal">
-    Delete
-</button>
-
-
 <!-- Modal -->
-<div class="modal fade" id="deleteProjectModal" tabindex="-1" aria-labelledby="deleteProjectModalLabel" aria-hidden="true">
+<div class="modal fade" id="{{ 'deleteProjectModal' . $project->id }}" tabindex="-1" aria-labelledby="deleteProjectModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="deleteProjectModalLabel">
-            Delete project
+            Delete project #{{ $project->id }}
         </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -31,7 +26,6 @@
                 Delete forever
             </button>
         </form>
-        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
       </div>
     </div>
   </div>

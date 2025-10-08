@@ -21,6 +21,7 @@
                     </a>
 
                     {{-- Componente utilizzato con inclue (perchè nessun elemento variabile nel componente, provare anche con x-component per dati da passare) --}}
+                    @include('components.delete-project-button')
                     @include('components.delete-project-modal')
 
 
@@ -52,6 +53,8 @@
         </div>
     </div>
 </section>
+
+
 
 
 @endsection

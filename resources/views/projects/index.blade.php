@@ -64,7 +64,9 @@
                                         <a href="{{ route('projects.edit', $project) }}" class="btn btn-warning">
                                             Edit
                                         </a>
+                                        
                                         {{-- Componente utilizzato con inclue (perchè nessun elemento variabile nel componente, provare anche con x-component per dati da passare) --}}
+                                        @include('components.delete-project-button')
                                         @include('components.delete-project-modal')
                                     </div>
                                 </td>
@@ -76,5 +78,6 @@
         </div>
     </div>
 </section>
+
 
 @endsection
