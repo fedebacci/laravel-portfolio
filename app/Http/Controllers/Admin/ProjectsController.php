@@ -60,21 +60,25 @@ class ProjectsController extends Controller
         // assignment of single attributes
         // # Codice per impedire l'invio di un contenuto nullo (se viene inserito uno spazio required non funziona)
         // - Solved using  pattern="\S(.*\S)?" in the form input to avoid spaces only, spaces in front or at the end. Leaving this control for safety
+        // ! Title check
         if ($data['title'] == null) {
             $newProject->title = 'No title';
         } else {
             $newProject->title = $data['title'];
         }
+        // ! Author check
         if ($data['author'] == null) {
             $newProject->author = 'No author';
         } else {
             $newProject->author = $data['author'];
         }
+        // ! Category check
         if ($data['category'] == null) {
             $newProject->category = 'No category';
         } else {
             $newProject->category = $data['category'];
         }
+        // ! Content check
         if ($data['content'] == null) {
             $newProject->content = 'No content';
         } else {
@@ -108,21 +112,25 @@ class ProjectsController extends Controller
         // assignment of single attributes
         // # Codice per impedire l'invio di un contenuto nullo (se viene inserito uno spazio required non funziona)
         // - Solved using  pattern="\S(.*\S)?" in the form input to avoid spaces only, spaces in front or at the end. Leaving this control for safety
+        // ! Title check
         if ($data['title'] == null) {
             $project->title = 'No title';
         } else {
             $project->title = $data['title'];
         }
+        // ! Author check
         if ($data['author'] == null) {
             $project->author = 'No author';
         } else {
             $project->author = $data['author'];
         }
+        // ! Category check
         if ($data['category'] == null) {
             $project->category = 'No category';
         } else {
             $project->category = $data['category'];
         }
+        // ! Content check
         if ($data['content'] == null) {
             $project->content = 'No content';
         } else {
