@@ -12,6 +12,12 @@
                     Edit Project #{{ $project->id }}
                 </h1>
 
+                <div class="d-flex gap-1 my-3">
+                    <a href="{{ route('projects.index') }}" class="btn btn-primary">
+                        Back to All Projects
+                    </a>
+                </div>
+
                 <form action="{{ route('projects.update', $project) }}" method="POST">
 
                     {{-- token --}}

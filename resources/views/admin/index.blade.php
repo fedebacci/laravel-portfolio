@@ -24,6 +24,9 @@
                             Modificato: {{ $user['updated_at'] }}
                         </li>
                     </ul>
+                    <a href="{{ route('projects.index') }}" class="btn btn-primary">
+                        Go to projects management
+                    </a>
                 </div>
             </div>
         </div>

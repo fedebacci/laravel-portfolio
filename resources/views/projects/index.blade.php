@@ -33,6 +33,9 @@
                             <th>
                                 Category
                             </th>
+                            <th>
+                                Actions
+                            </th>
                             {{-- <th>
                                 Content
                             </th> --}}
@@ -42,7 +45,7 @@
                         @foreach ($projects as $project)
                             <tr>
                                 <td>
-                                    {{ $project->title }}
+                                    #{{ $project->id }} {{ $project->title }}
                                 </td>
                                 <td>
                                     {{ $project->author }}
@@ -54,12 +57,16 @@
                                     {{ $project->content }}
                                 </td> --}}
                                 <td>
-                                    <a href="{{ route('projects.show', $project->id) }}" class="btn btn-primary">
-                                        View Project
-                                    </a>
-                                    {{-- <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-warning">
-                                        Edit Project
-                                    </a> --}}
+                                    <div class="d-flex flex-column gap-1">
+                                        <a href="{{ route('projects.show', $project) }}" class="btn btn-primary">
+                                            View
+                                        </a>
+                                        <a href="{{ route('projects.edit', $project) }}" class="btn btn-warning">
+                                            Edit
+                                        </a>
+                                        {{-- Componente utilizzato con inclue (perchè nessun elemento variabile nel componente, provare anche con x-component per dati da passare) --}}
+                                        @include('components.delete-project-modal')
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
