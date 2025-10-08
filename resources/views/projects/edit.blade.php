@@ -28,22 +28,22 @@
                     <label for="title">
                         Titolo del progetto
                     </label>
-                    <input value="{{ $project->title }}" type="text" name="title" id="title" class="form-control mb-2">
+                    <input value="{{ $project->title }}" type="text" name="title" id="title" class="form-control mb-2" required>
 
                     <label for="author">
                         Autore del progetto
                     </label>
-                    <input value="{{ $project->author }}" type="text" name="author" id="author" class="form-control mb-2">
+                    <input value="{{ $project->author }}" type="text" name="author" id="author" class="form-control mb-2" required>
 
                     <label for="category">
                         Categoria del progetto
                     </label>
-                    <input value="{{ $project->category }}" type="text" name="category" id="category" class="form-control mb-2">
+                    <input value="{{ $project->category }}" type="text" name="category" id="category" class="form-control mb-2" required>
 
                     <label for="content">
                         Descrizione del progetto
                     </label>
-                    <textarea name="content" id="content" class="form-control mb-2">{{ $project->content }}</textarea>
+                    <textarea name="content" id="content" class="form-control mb-2" required>{{ $project->content }}</textarea>
 
                     <input type="submit" value="Modifica Progetto" class="btn btn-success">
 

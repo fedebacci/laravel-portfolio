@@ -64,28 +64,21 @@ class ProjectsController extends Controller
         } else {
             $newProject->title = $data['title'];
         }
-        // $newProject->title = $data['title'];
         if ($data['author'] == null) {
             $newProject->author = 'No author';
         } else {
             $newProject->author = $data['author'];
         }
-        // $newProject->author = $data['author'];
         if ($data['category'] == null) {
             $newProject->category = 'No category';
         } else {
             $newProject->category = $data['category'];
         }
-        // $newProject->category = $data['category'];
         if ($data['content'] == null) {
             $newProject->content = 'No content';
         } else {
             $newProject->content = $data['content'];
         }
-        // $newProject->content = $data['content'];
-        
-        
-        
         // dd($newProject);
 
         $newProject->save();
@@ -110,10 +103,29 @@ class ProjectsController extends Controller
         //
         $data = $request->all();
         // dd($data);
-        $project->title = $data['title'];
-        $project->author = $data['author'];
-        $project->category = $data['category'];
-        $project->content = $data['content'];
+
+        // assignment of single attributes
+        // # Codice per impedire l'invio di un contenuto nullo (se viene inserito uno spazio required non funziona)
+        if ($data['title'] == null) {
+            $project->title = 'No title';
+        } else {
+            $project->title = $data['title'];
+        }
+        if ($data['author'] == null) {
+            $project->author = 'No author';
+        } else {
+            $project->author = $data['author'];
+        }
+        if ($data['category'] == null) {
+            $project->category = 'No category';
+        } else {
+            $project->category = $data['category'];
+        }
+        if ($data['content'] == null) {
+            $project->content = 'No content';
+        } else {
+            $project->content = $data['content'];
+        }
 
         // dd($project);
 
