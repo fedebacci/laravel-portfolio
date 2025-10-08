@@ -49,11 +49,43 @@ class ProjectsController extends Controller
         // # make sure to set the $fillable property in the Model
         // $newProject->fill($data);
 
+        
+        // # Abort if title, author, category or content are null (should be managed in the form with 'required' but if a space is entered it is not detected)
+        // - Eventually launch an error message in the view instead of aborting and getting error screen
+        // if ($data['title'] == null || $data['author'] == null || $data['category'] == null) {
+        //     abort(400);
+        // }
+        
+        
         // assignment of single attributes
-        $newProject->title = $data['title'];
-        $newProject->author = $data['author'];
-        $newProject->category = $data['category'];
-        $newProject->content = $data['content'];
+        // # Codice per impedire l'invio di un contenuto nullo (se viene inserito uno spazio required non funziona)
+        if ($data['title'] == null) {
+            $newProject->title = 'No title';
+        } else {
+            $newProject->title = $data['title'];
+        }
+        // $newProject->title = $data['title'];
+        if ($data['author'] == null) {
+            $newProject->author = 'No author';
+        } else {
+            $newProject->author = $data['author'];
+        }
+        // $newProject->author = $data['author'];
+        if ($data['category'] == null) {
+            $newProject->category = 'No category';
+        } else {
+            $newProject->category = $data['category'];
+        }
+        // $newProject->category = $data['category'];
+        if ($data['content'] == null) {
+            $newProject->content = 'No content';
+        } else {
+            $newProject->content = $data['content'];
+        }
+        // $newProject->content = $data['content'];
+        
+        
+        
         // dd($newProject);
 
         $newProject->save();
