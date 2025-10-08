@@ -59,6 +59,7 @@ class ProjectsController extends Controller
         
         // assignment of single attributes
         // # Codice per impedire l'invio di un contenuto nullo (se viene inserito uno spazio required non funziona)
+        // - Solved using  pattern="\S(.*\S)?" in the form input to avoid spaces only, spaces in front or at the end. Leaving this control for safety
         if ($data['title'] == null) {
             $newProject->title = 'No title';
         } else {
@@ -106,6 +107,7 @@ class ProjectsController extends Controller
 
         // assignment of single attributes
         // # Codice per impedire l'invio di un contenuto nullo (se viene inserito uno spazio required non funziona)
+        // - Solved using  pattern="\S(.*\S)?" in the form input to avoid spaces only, spaces in front or at the end. Leaving this control for safety
         if ($data['title'] == null) {
             $project->title = 'No title';
         } else {

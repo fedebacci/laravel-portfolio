@@ -20,22 +20,22 @@
                     <label for="title">
                         Titolo del progetto
                     </label>
-                    <input type="text" name="title" id="title" class="form-control mb-2" required>
+                    <input type="text" name="title" id="title" class="form-control mb-2" required pattern="\S(.*\S)?">
 
                     <label for="author">
                         Autore del progetto
                     </label>
-                    <input type="text" name="author" id="author" class="form-control mb-2" required>
+                    <input type="text" name="author" id="author" class="form-control mb-2" required pattern="\S(.*\S)?">
 
                     <label for="category">
                         Categoria del progetto
                     </label>
-                    <input type="text" name="category" id="category" class="form-control mb-2" required>
+                    <input type="text" name="category" id="category" class="form-control mb-2" required pattern="\S(.*\S)?">
 
                     <label for="content">
                         Descrizione del progetto
                     </label>
-                    <textarea name="content" id="content" class="form-control mb-2" required></textarea>
+                    <textarea name="content" id="content" class="form-control mb-2" required pattern="\S(.*\S)?"></textarea>
 
                     <input type="submit" value="Crea Progetto" class="btn btn-success">
 
