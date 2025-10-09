@@ -54,14 +54,17 @@
                             <input value="{{ $project->category }}" type="text" name="category" id="category" class="form-control mb-2" required pattern="\S(.*\S)?"> --}}
                         
                             {{-- # NEW with type Model (relation One to Many) -> type (New resource) --}}
-                            {{-- <label for="type_id">
-                                Categoria del progetto
-                            </label>
-                            <select name="type_id" id="type_id">
-                                @foreach ($types as $type)
-                                    <option value="{{ $type->id }}" {{ $project->type_id == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
-                                @endforeach
-                            </select> --}}
+                            <div class="col-12">
+                                <label for="type_id">
+                                    Categoria del progetto
+                                </label>
+                                <select name="type_id" id="type_id" class="form-select">
+                                    <option value="null">Choose type</option>
+                                    @foreach ($types as $type)
+                                        <option value="{{ $type->id }}" {{ $project->type_id == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
                             <div class="col-6">
                                 <label for="startDate">

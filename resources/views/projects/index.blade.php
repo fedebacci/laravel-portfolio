@@ -21,61 +21,68 @@
                     </a>
                 </div>
 
-                <table class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>
-                                Title
-                            </th>
-                            <th>
-                                Client
-                            </th>
-                            <th>
-                                Period
-                            </th>
-                            {{-- <th>
-                                Type
-                            </th> --}}
-                            <th>
-                                Actions
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($projects as $project)
+                @if ($projects->isEmpty())
+                    <div class="alert alert-info">
+                        No projects found.
+                    </div>
+                @else
+                    <table class="table table-striped table-bordered">
+                        <thead>
                             <tr>
-                                <td>
-                                    #{{ $project->id }} {{ $project->title }}
-                                </td>
-                                <td>
-                                    {{ $project->client }}
-                                </td>
-                                <td>
-                                    <span class="text-nowrap">From: {{ substr($project->startDate, 0, 10) }}</span>
-                                    <br/>
-                                    <span class="text-nowrap">To: {{ substr($project->endDate, 0, 10) }}</span>
-                                </td>
-                                {{-- <td>
-                                    {{ $project->summary }}
-                                </td> --}}
-                                <td>
-                                    <div class="d-flex flex-column gap-1">
-                                        <a href="{{ route('projects.show', $project) }}" class="btn btn-primary">
-                                            View
-                                        </a>
-                                        <a href="{{ route('projects.edit', $project) }}" class="btn btn-warning">
-                                            Edit
-                                        </a>
-                                        
-                                        {{-- Componente utilizzato con include (perchè nessun elemento variabile nel componente, provare anche con x-component per dati da passare) --}}
-                                        @include('components.delete-project-button')
-                                        @include('components.delete-project-modal')
-                                    </div>
-                                </td>
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    Client
+                                </th>
+                                <th>
+                                    Period
+                                </th>
+                                <th>
+                                    Type
+                                </th>
+                                <th>
+                                    Actions
+                                </th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($projects as $project)
+                                <tr>
+                                    <td>
+                                        #{{ $project->id }} {{ $project->title }}
+                                    </td>
+                                    <td>
+                                        {{ $project->client }}
+                                    </td>
+                                    <td>
+                                        <span class="text-nowrap">From: {{ substr($project->startDate, 0, 10) }}</span>
+                                        <br/>
+                                        <span class="text-nowrap">To: {{ substr($project->endDate, 0, 10) }}</span>
+                                    </td>
+                                    <td>
+                                        {{ $project->type->name ?? 'No type' }}
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column gap-1">
+                                            <a href="{{ route('projects.show', $project) }}" class="btn btn-primary">
+                                                View
+                                            </a>
+                                            <a href="{{ route('projects.edit', $project) }}" class="btn btn-warning">
+                                                Edit
+                                            </a>
+                                            
+                                            {{-- Componente utilizzato con include (perchè nessun elemento variabile nel componente, provare anche con x-component per dati da passare) --}}
+                                            @include('components.delete-project-button')
+                                            @include('components.delete-project-modal')
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
+
             </div>
         </div>
     </div>

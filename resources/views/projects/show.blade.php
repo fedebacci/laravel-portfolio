@@ -41,9 +41,9 @@
                         <br/>
                         <span class="text-nowrap">To: {{ substr($project->endDate, 0, 10) }}</span>
                     </li>
-                    {{-- <li>
+                    <li>
                         <strong>Tipo:</strong> {{ $project->type->name ?? 'No type' }}
-                    </li> --}}
+                    </li>
                     <li>
                         <strong>Contenuto:</strong>
                         <br />

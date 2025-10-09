@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
@@ -33,7 +34,8 @@ class ProjectsController extends Controller
     public function create()
     {
         //
-        return view('projects.create');
+        $types = Type::all();
+        return view('projects.create', compact('types'));
     }
 
     /**
@@ -78,12 +80,12 @@ class ProjectsController extends Controller
         } else {
             $newProject->client = $data['client'];
         }
-        // // ! Category check
-        // if ($data['type_id'] == null) {
-        //     $newProject->type_id = 'No type_id';
-        // } else {
-        //     $newProject->type_id = $data['type_id'];
-        // }
+        // ! Type check
+        if ($data['type_id'] == 'null') {
+            $newProject->type_id = null;
+        } else {
+            $newProject->type_id = $data['type_id'];
+        }
 
         // # IMPORTANTE
         // - Control that endDate is after startDate
@@ -128,7 +130,8 @@ class ProjectsController extends Controller
     {
         //
         // dd($project);
-        return view('projects.edit', compact('project'));
+        $types = Type::all();
+        return view('projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -159,12 +162,12 @@ class ProjectsController extends Controller
         } else {
             $project->client = $data['client'];
         }
-        // // ! Category check
-        // if ($data['category'] == null) {
-        //     $project->category = 'No category';
-        // } else {
-        //     $project->category = $data['category'];
-        // }
+        // ! Type check
+        if ($data['type_id'] == 'null') {
+            $project->type_id = null;
+        } else {
+            $project->type_id = $data['type_id'];
+        }
 
         
 

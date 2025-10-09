@@ -43,18 +43,12 @@
                                 <label for="startDate">
                                     Inizio del progetto
                                 </label>
-                                {{-- <input type="text" name="startDate" id="startDate" class="form-control mb-2" required pattern="\S(.*\S)?"> --}}
-                                {{-- <input type="datetime-local" name="startDate" id="startDate" class="form-control mb-2" required> --}}
-                                {{-- <input type="date" name="startDate" id="startDate" class="form-control mb-2" required max="{{ date('d-m-Y') }}"> --}}
                                 <input type="date" name="startDate" id="startDate" class="form-control mb-2" required max="{{ date('Y-m-d') }}">
                             </div>
                             <div class="col-6">
                                 <label for="endDate">
                                     Fine del progetto
                                 </label>
-                                {{-- <input type="text" name="endDate" id="endDate" class="form-control mb-2" required pattern="\S(.*\S)?"> --}}
-                                {{-- <input type="datetime-local" name="endDate" id="endDate" class="form-control mb-2" required> --}}
-                                {{-- <input type="date" name="endDate" id="endDate" class="form-control mb-2" required max="{{ date('d-m-Y') }}"> --}}
                                 <input type="date" name="endDate" id="endDate" class="form-control mb-2" required max="{{ date('Y-m-d') }}">
                             </div>
                             {{-- <div class="col-12">
@@ -63,6 +57,19 @@
                                 </label>
                                 <input type="text" name="type" id="type" class="form-control mb-2" required pattern="\S(.*\S)?">
                             </div> --}}
+                            <div class="col-12">
+                                <label for="type_id">
+                                    Categoria del progetto
+                                </label>
+                                <select name="type_id" id="type_id" class="form-select">
+                                    <option value="null">Choose type</option>
+                                    @foreach ($types as $type)
+                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
                             <div class="col-12">
                                 <label for="summary">
                                     Riassunto del progetto
