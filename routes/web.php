@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectsController;
+use App\Http\Controllers\Admin\TypesController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,10 +22,6 @@ Route::middleware('auth')->group(function () {
 
 
 
-
-// Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-//     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
-// });
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->prefix('admin')
@@ -37,6 +34,7 @@ Route::middleware(['auth', 'verified'])
 
 
 Route::resource('projects', ProjectsController::class)->middleware(['auth', 'verified']);
+Route::resource('types', TypesController::class)->middleware(['auth', 'verified']);
 
 
 require __DIR__.'/auth.php';

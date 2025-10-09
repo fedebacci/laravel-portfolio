@@ -27,6 +27,9 @@
                     <a href="{{ route('projects.index') }}" class="btn btn-primary">
                         Go to projects management
                     </a>
+                    <a href="{{ route('types.index') }}" class="btn btn-primary">
+                        Go to project types management
+                    </a>
                 </div>
             </div>
         </div>

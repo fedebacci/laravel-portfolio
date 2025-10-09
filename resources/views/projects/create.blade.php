@@ -11,7 +11,11 @@
                 <h1>
                     New Project
                 </h1>
-
+                <div class="d-flex gap-1 my-3">
+                    <a href="{{ route('projects.index') }}" class="btn btn-primary">
+                        Back to All Projects
+                    </a>
+                </div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul class="mb-0">

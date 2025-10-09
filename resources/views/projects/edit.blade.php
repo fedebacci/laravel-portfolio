@@ -28,6 +28,10 @@
                     </div>
                 @endif
 
+
+                {{-- # IMPORTANTE --}}
+                {{-- # Relativamente al recupero dei dati errati nel redirect a questa pagina (ad esempio con date incompatibili) PROVARE AD USARE old() (In fase d test per i types) --}}
+                {{-- ! ES: {{ substr(old('startDate', $project->startDate), 0, 10) }} --}}
                 <div class="card">
                     <div class="card-body">
                         <form action="{{ route('projects.update', $project) }}" method="POST" class="row g-3">
