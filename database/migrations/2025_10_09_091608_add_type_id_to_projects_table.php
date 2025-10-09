@@ -12,12 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            // Metodo lungo
-            // $table->unsignedBigInteger('type_id')->after('id');
-            // $table->foreign('type_id')->references('id')->on('types')->onDelete('set null');
-
-            // Metodo breve
-            // $table->foreignId('type_id')->after('id')->constrained()->nullOnDelete();
             // ! Impedisco per ora la cancellazione di un type se collegato a dei progetti in attesa di decidere quale comportamento adottare
             $table->foreignId('type_id')->after('id')->nullable()->constrained()->nullOnDelete();
         });

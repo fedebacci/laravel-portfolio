@@ -21,9 +21,6 @@ class ProjectsTableSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             $newProject = new Project();
 
-            // - Hard coded, assuming there are 4 types
-            // $newProject->type_id = $faker->numberBetween(1, 4);
-            // - Dynamic, fetch all type ids and pick one randomly
             $availableTypes = Type::all()->pluck('id')->toArray();
             $newProject->type_id = $faker->randomElement($availableTypes);
 
@@ -31,7 +28,6 @@ class ProjectsTableSeeder extends Seeder
             $newProject->client = $faker->name();
             $newProject->startDate = $faker->dateTimeBetween('-1 month', '-1 week');
             $newProject->endDate = $faker->dateTimeBetween('-1 week');
-
             $newProject->summary = $faker->paragraphs(3, true);
 
             $newProject->save();
