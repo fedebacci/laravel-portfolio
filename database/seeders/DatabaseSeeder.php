@@ -21,15 +21,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ProjectsTableSeeder::class);
         $this->call(TechnologiesTableSeeder::class);
 
-        // # Looks for ProjectTechnologies and gives error
-        // $this->call(ProjectTechnologyTableSeeder::class);
-
         $availableProjects = Project::all()->pluck('id')->toArray();
         $availableTechnologies = Technology::all()->pluck('id')->toArray();
         $projectTechnologiesRelations = [];
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 1; $i <= (count($availableProjects) * 2); $i++) {
             $projectTechnologiesRelations[] = [
-                'project_id' => $availableProjects[array_rand($availableProjects)],
+                'project_id' => ceil($i / 2),
                 'technology_id' => $availableTechnologies[array_rand($availableTechnologies)],
                 'created_at' => now(),
                 'updated_at' => now(),
