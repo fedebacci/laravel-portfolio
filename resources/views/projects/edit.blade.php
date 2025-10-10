@@ -51,16 +51,10 @@
                                 </label>
                                 <input value="{{ $project->client }}" type="text" name="client" id="client" class="form-control mb-2" required pattern="\S(.*\S)?">
                             </div>
-                            {{-- # OLD with category string (no relations) -> category (Old resource) --}}
-                            {{-- <label for="category">
-                                Categoria del progetto
-                            </label>
-                            <input value="{{ $project->category }}" type="text" name="category" id="category" class="form-control mb-2" required pattern="\S(.*\S)?"> --}}
-                        
                             {{-- # NEW with type Model (relation One to Many) -> type (New resource) --}}
                             <div class="col-12">
                                 <label for="type_id">
-                                    Categoria del progetto
+                                    Tipologia del progetto
                                 </label>
                                 <select name="type_id" id="type_id" class="form-select">
                                     <option value="null">Choose type</option>
@@ -68,6 +62,17 @@
                                         <option value="{{ $type->id }}" {{ $project->type_id == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="d-block">
+                                    Tecnologie usate
+                                </label>
+                                @foreach ($technologies as $technology)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="technology-{{ $technology->id }}" value="{{ $technology->id }}" name="technologies[]" {{ $project->technologies->contains($technology->id) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
+                                    </div>
+                                @endforeach
                             </div>
 
                             <div class="col-6">

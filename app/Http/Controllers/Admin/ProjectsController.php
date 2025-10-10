@@ -125,19 +125,6 @@ class ProjectsController extends Controller
         $newProject->save();
 
         // # If there are technologies, attach them to the project
-        // - Metodo 1
-        // if (array_key_exists('technologies', $data)) {
-        //     $newProject->technologies()->attach($data['technologies']);
-        // }
-        // - Metodo 2
-        // if (isset($data['technologies'])) {
-        //     $newProject->technologies()->attach($data['technologies']);
-        // }
-        // - Metodo 3
-        // if (!empty($data['technologies'])) {
-        //     $newProject->technologies()->attach($data['technologies']);
-        // }
-        // - Metodo 4 (consigliato)
         if ($request->has('technologies')) {
             $newProject->technologies()->attach($data['technologies']);
         }
@@ -153,7 +140,8 @@ class ProjectsController extends Controller
         //
         // dd($project);
         $types = Type::all();
-        return view('projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -226,6 +214,15 @@ class ProjectsController extends Controller
         // dd($project);
 
         $project->update();
+
+        // # If there are technologies, sync them to the project
+        if ($request->has('technologies')) {
+            // dd($data['technologies']);
+            $project->technologies()->sync($data['technologies']);
+        } else {
+            $project->technologies()->detach();
+        }
+
         return redirect()->route('projects.show', $project->id);
     }
 
