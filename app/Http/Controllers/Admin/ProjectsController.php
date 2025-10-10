@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,8 @@ class ProjectsController extends Controller
     {
         //
         $types = Type::all();
-        return view('projects.create', compact('types'));
+        $technologies = Technology::all();
+        return view('projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -121,6 +123,25 @@ class ProjectsController extends Controller
         // dd($newProject);
 
         $newProject->save();
+
+        // # If there are technologies, attach them to the project
+        // - Metodo 1
+        // if (array_key_exists('technologies', $data)) {
+        //     $newProject->technologies()->attach($data['technologies']);
+        // }
+        // - Metodo 2
+        // if (isset($data['technologies'])) {
+        //     $newProject->technologies()->attach($data['technologies']);
+        // }
+        // - Metodo 3
+        // if (!empty($data['technologies'])) {
+        //     $newProject->technologies()->attach($data['technologies']);
+        // }
+        // - Metodo 4 (consigliato)
+        if ($request->has('technologies')) {
+            $newProject->technologies()->attach($data['technologies']);
+        }
+
         return redirect()->route('projects.show', $newProject->id);
     }
 

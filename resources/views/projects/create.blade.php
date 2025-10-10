@@ -55,15 +55,9 @@
                                 </label>
                                 <input type="date" name="endDate" id="endDate" class="form-control mb-2" required max="{{ date('Y-m-d') }}">
                             </div>
-                            {{-- <div class="col-12">
-                                <label for="type">
-                                    Tipologia del progetto
-                                </label>
-                                <input type="text" name="type" id="type" class="form-control mb-2" required pattern="\S(.*\S)?">
-                            </div> --}}
                             <div class="col-12">
                                 <label for="type_id">
-                                    Categoria del progetto
+                                    Tipologia del progetto
                                 </label>
                                 <select name="type_id" id="type_id" class="form-select">
                                     <option value="null">Choose type</option>
@@ -71,6 +65,18 @@
                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="d-block">
+                                    Tecnologie usate
+                                </label>
+                                @foreach ($technologies as $technology)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="technology-{{ $technology->id }}" value="{{ $technology->id }}" name="technologies[]">
+                                        <label class="form-check-label" for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
+                                    </div>
+                                @endforeach
                             </div>
 
 
