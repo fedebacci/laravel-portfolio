@@ -24,14 +24,13 @@ class DatabaseSeeder extends Seeder
         $availableProjects = Project::all()->pluck('id')->toArray();
         $availableTechnologies = Technology::all()->pluck('id')->toArray();
         $projectTechnologiesRelations = [];
-        for ($i = 1; $i <= (count($availableProjects) * 2); $i++) {
+        for ($i = 1; $i <= (count($availableProjects) * 3); $i++) {
             $projectTechnologiesRelations[] = [
-                'project_id' => ceil($i / 2),
+                'project_id' => ceil($i / 3),
                 'technology_id' => $availableTechnologies[array_rand($availableTechnologies)],
-                'created_at' => now(),
-                'updated_at' => now(),
             ];
         }
+        $projectTechnologiesRelations = array_unique($projectTechnologiesRelations, SORT_REGULAR);
         DB::table('project_technology')->insert($projectTechnologiesRelations);
     }
 }
