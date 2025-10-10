@@ -17,11 +17,11 @@ class ProjectsTableSeeder extends Seeder
     public function run(Faker $faker): void
     {
         //
+        $availableTypes = Type::all()->pluck('id')->toArray();
 
         for ($i = 0; $i < 10; $i++) {
             $newProject = new Project();
 
-            $availableTypes = Type::all()->pluck('id')->toArray();
             $newProject->type_id = $faker->randomElement($availableTypes);
 
             $newProject->title = $faker->sentence();

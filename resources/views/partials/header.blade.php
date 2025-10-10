@@ -61,6 +61,9 @@
                             <a class="dropdown-item" href="{{ route('projects.index') }}">
                                 {{ __('Projects') }}
                             </a>
+                            <a class="dropdown-item" href="{{ route('types.index') }}">
+                                {{ __('Project Types') }}
+                            </a>
                             <a class="dropdown-item" href="{{ route('dashboard') }}">
                                 {{ __('Default Dashboard') }}
                             </a>
