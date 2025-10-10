@@ -42,6 +42,9 @@
                                     Type
                                 </th>
                                 <th>
+                                    Technologies
+                                </th>
+                                <th>
                                     Actions
                                 </th>
                             </tr>
@@ -62,6 +65,15 @@
                                     </td>
                                     <td>
                                         {{ $project->type->name ?? 'No type' }}
+                                    </td>
+                                    <td>
+                                        @if ($project->technologies->isNotEmpty())
+                                            @foreach ($project->technologies as $technology)
+                                                <span class="badge" style="background-color: {{ $technology->color }}">{{ $technology->name }}</span>
+                                            @endforeach
+                                        @else
+                                            <span>No technologies</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <div class="d-flex flex-column gap-1">

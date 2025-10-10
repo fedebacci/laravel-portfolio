@@ -45,6 +45,20 @@
                         <strong>Tipo:</strong> {{ $project->type->name ?? 'No type' }}
                     </li>
                     <li>
+                        <strong>Tecnologie:</strong>
+                        @if ($project->technologies->isNotEmpty())
+                            @foreach ($project->technologies as $technology)
+                                <span class="badge" style="background-color: {{ $technology->color }}">{{ $technology->name }}</span>
+                            @endforeach
+                        @else
+                            <span>No technologies</span>
+                        @endif
+                        {{-- @forelse ($collection as $item)
+                        @empty
+                        @endforelse --}}
+                        {{-- <strong>Tecnologie:</strong> {{ $project->technology->name }} --}}
+                    </li>
+                    <li>
                         <strong>Contenuto:</strong>
                         <br />
                         {{-- <pre class="m-0 text-wrap">{{ $project->summary }}</pre> --}}
