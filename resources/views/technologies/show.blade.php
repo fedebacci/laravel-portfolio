@@ -33,6 +33,25 @@
                         <span class="badge" style="background-color: {{ $technology->color }}">{{ $technology->color }}</span> 
                     </li>
                     <li>
+                        <strong>Associated Projects:</strong>
+                        <br/>
+                        @if ($technology->projects->isEmpty())
+                            <span>No associated projects</span>
+                        @else
+                            @php
+                                $technology->projects = $technology->projects->sortBy('id');
+                            @endphp
+                            @foreach ($technology->projects as $project)
+                                {{-- <a href="{{ route('projects.show', $project) }}" class="badge text-bg-info">
+                                    {{ $project->title }}
+                                </a> --}}
+                                <p class='m-0'>
+                                    {{ $project->id }} - {{ $project->title }}
+                                </p>
+                            @endforeach
+                        @endif
+                    </li>
+                    <li>
                         <strong>Creato:</strong> {{ $technology->created_at }}
                     </li>
                     <li>

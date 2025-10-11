@@ -33,6 +33,9 @@
                                     <th>
                                         Type description
                                     </th>
+                                    <th>
+                                        Associated projects
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,6 +46,20 @@
                                         </td>
                                         <td>
                                             {{ $type->description }}
+                                        </td>
+                                        <td>
+                                            @if ($type->projects->isEmpty())
+                                                <span>No associated projects</span>
+                                            @else
+                                                @php
+                                                    $type->projects = $type->projects->sortBy('id');
+                                                @endphp
+                                                @foreach ($type->projects as $project)
+                                                    <p class='m-0'>
+                                                        {{ $project->id }} - {{ $project->title }}
+                                                    </p>
+                                                @endforeach
+                                            @endif
                                         </td>
                                         <td>
                                             <div class="d-flex flex-column gap-1">

@@ -46,6 +46,21 @@
                                 {{-- <input type="color" name="color" id="color" value="{{ old('color', $technology->color) }}"> --}}
                                 <input type="color" name="color" id="color" value="{{ $technology->color }}" required>
                             </div>
+
+
+                            <div class="col-12">
+                                <label class="d-block">
+                                    Associazione rapida progetti
+                                </label>
+                                @foreach ($projects as $project)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="project-{{ $project->id }}" value="{{ $project->id }}" name="projects[]"
+                                        @if (in_array($project->id, old('projects', $technology->projects->pluck('id')->toArray()))) checked @endif>
+                                        <label class="form-check-label" for="project-{{ $project->id }}">#{{ $project->id }} - {{ $project->title }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+
                             <div class="col-12">
                                 <button type="submit" class="btn btn-success">
                                     Update Project Technology

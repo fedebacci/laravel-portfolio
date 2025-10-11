@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use App\Models\Technology;
 
 class TechnologiesController extends Controller
@@ -25,7 +26,8 @@ class TechnologiesController extends Controller
     public function create()
     {
         //
-        return view('technologies.create');
+        $projects = Project::all();
+        return view('technologies.create', compact('projects'));
     }
 
     /**
@@ -50,6 +52,13 @@ class TechnologiesController extends Controller
         }
 
         $newTechnology->save();
+
+
+        // # If there are projects, attach them to the technology
+        if ($request->has('projects')) {
+            $newTechnology->projects()->attach($data['projects']);
+        }
+
         return redirect()->route('technologies.show', $newTechnology->id);
     }
 
@@ -68,7 +77,8 @@ class TechnologiesController extends Controller
     public function edit(Technology $technology)
     {
         //
-        return view('technologies.edit', compact('technology'));
+        $projects = Project::all();
+        return view('technologies.edit', compact('technology', 'projects'));
     }
 
     /**
@@ -92,6 +102,15 @@ class TechnologiesController extends Controller
         }
 
         $technology->update();
+
+        // # If there are projects, sync them to the technology
+        if ($request->has('projects')) {
+            $technology->projects()->sync($data['projects']);
+        } else {
+            $technology->projects()->detach();
+        }
+
+
         return redirect()->route('technologies.show', $technology->id);
     }
 

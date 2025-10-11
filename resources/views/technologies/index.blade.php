@@ -33,6 +33,9 @@
                                     <th>
                                         Technology color
                                     </th>
+                                    <th>
+                                        Associated projects
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,6 +46,23 @@
                                         </td>
                                         <td>
                                             <span class="badge {{ $technology->name == 'JavaScript' || $technology->name == 'React' ? 'text-dark' : 'text-light' }}" style="background-color: {{ $technology->color }}">{{ $technology->color }}</span> 
+                                        </td>
+                                        <td>
+                                            @if ($technology->projects->isEmpty())
+                                                <span>No associated projects</span>
+                                            @else
+                                                @php
+                                                    $technology->projects = $technology->projects->sortBy('id');
+                                                @endphp
+                                                @foreach ($technology->projects as $project)
+                                                    {{-- <a href="{{ route('projects.show', $project) }}" class="badge text-bg-info">
+                                                        {{ $project->title }}
+                                                    </a> --}}
+                                                    <p class='m-0'>
+                                                        {{ $project->id }} - {{ $project->title }}
+                                                    </p>
+                                                @endforeach
+                                            @endif
                                         </td>
                                         <td>
                                             <div class="d-flex flex-column gap-1">

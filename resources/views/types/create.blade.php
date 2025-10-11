@@ -41,6 +41,19 @@
                                 </label>
                                 <textarea name="description" id="description" rows="5" class="form-control mb-2" pattern="\S(.*\S)?"></textarea>
                             </div>
+
+                            {{-- <div class="col-12">
+                                <label class="d-block">
+                                    Associazione rapida progetti
+                                </label>
+                                @foreach ($projects as $project)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="project-{{ $project->id }}" value="{{ $project->id }}" name="projects[]">
+                                        <label class="form-check-label" for="project-{{ $project->id }}">#{{ $project->id }} - {{ $project->title }}</label>
+                                    </div>
+                                @endforeach
+                            </div> --}}
+
                             <div class="col-12">
                                 <button type="submit" class="btn btn-success">
                                     Create Project Type
