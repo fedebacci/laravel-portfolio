@@ -68,8 +68,11 @@
                                     </td>
                                     <td>
                                         @if ($project->technologies->isNotEmpty())
+                                            @php
+                                                $project->technologies = $project->technologies->sortBy('id');
+                                            @endphp
                                             @foreach ($project->technologies as $technology)
-                                                <span class="badge" style="background-color: {{ $technology->color }}">{{ $technology->name }}</span>
+                                                <span class="badge {{ $technology->name == 'JavaScript' || $technology->name == 'React' ? 'text-dark' : 'text-light' }}" style="background-color: {{ $technology->color }}">{{ $technology->name }}</span>
                                             @endforeach
                                         @else
                                             <span>No technologies</span>
