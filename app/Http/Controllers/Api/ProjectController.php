@@ -10,15 +10,40 @@ class ProjectController extends Controller
 {
     //
     public function index() {
-        // return "Sei nella index delle api di progetti";
-
-        
         $projects = Project::with('type', 'technologies')->get();
 
+        if ($projects->isEmpty()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No projects found',
+            ], 404);
+        }
+        
         return response()->json([
             'success' => true,
             'message' => 'Projects retrieved successfully',
             'data' => $projects
         ]);
+    }
+
+
+    
+    public function show(Project $project) {
+        // dd($project);
+
+        $project->load('type', 'technologies');
+
+        if($project) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Project retrieved successfully',
+                'data' => $project
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Project not found',
+            ], 404);
+        }
     }
 }
