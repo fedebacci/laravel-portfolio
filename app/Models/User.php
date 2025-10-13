@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+// # Indicato da inserire dal terminale dopo aver installato sanctum, ma non utilizzato nella lezione
+// use Laravel\Sanctum\HasApiTokens;
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -44,4 +47,6 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
 }
